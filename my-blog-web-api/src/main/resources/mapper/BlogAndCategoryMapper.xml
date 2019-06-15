@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.zzz989.my.blog.web.api.mapper.BlogAndCategoryMapper">
+<sql id="column">
+    	a.id,
+        a.title,
+        a.pic,
+        a.blog_desc AS 'blogDesc',
+        a.blog_content AS 'blogContent',
+        a.blog_content_markdown AS 'blogContentMarkdown',
+        a.read_times AS 'readTimes',
+        a.created,
+        a.updated,
+        a.praise_times AS 'praiseTimes',
+        b.id AS 'blogCategory.id',
+        b.blog_category_name AS 'blogCategory.blogCategoryName',
+        c.id AS 'blogger.id',
+        c.username AS 'blogger.username'
+</sql>
+    <select id="getBlogAndCategory" resultType="xyz.zzz989.my.blog.domain.entity.BlogAndCategory">
+        SELECT
+        <include refid="column"></include>
+        FROM
+        blog AS a
+        LEFT JOIN blog_category AS b  ON a.categoriy_id = b.id LEFT JOIN blogger AS c ON c.id = a.bolgger_id
+    </select>
+    <select id="getBlogAndCategoryById" resultType="xyz.zzz989.my.blog.domain.entity.BlogAndCategory">
+        SELECT
+        <include refid="column"></include>
+        FROM
+        blog AS a
+        LEFT JOIN blog_category AS b  ON a.categoriy_id = b.id LEFT JOIN blogger AS c ON c.id = a.bolgger_id
+        WHERE a.id = #{id}
+    </select>
+</mapper>

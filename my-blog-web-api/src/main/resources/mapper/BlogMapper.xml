@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.zzz989.my.blog.web.api.mapper.BlogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="xyz.zzz989.my.blog.domain.entity.Blog">
+        <id column="id" property="id" />
+        <result column="bolgger_id" property="bolggerId" />
+        <result column="title" property="title" />
+        <result column="pic" property="pic" />
+        <result column="categoriy_id" property="categoriyId" />
+        <result column="blog_desc" property="blogDesc" />
+        <result column="created" property="created" />
+        <result column="updated" property="updated" />
+        <result column="read_times" property="readTimes" />
+        <result column="praise_times" property="praiseTimes" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, title, pic, blog_desc AS blogDesc
+    </sql>
+    <select id="getRecentBlog" resultType="xyz.zzz989.my.blog.domain.entity.Blog">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        From blog
+        ORDER BY created DESC LIMIT 3
+    </select>
+
+</mapper>

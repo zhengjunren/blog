@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.zzz989.my.blog.web.api.mapper.CategoryMapper">
+
+<!--    <resultMap id="getCateory" type="Category">-->
+<!--        <id column="id" property="id"></id>-->
+<!--        <result column="blog_category_name" property="blogCategoryName"></result>-->
+<!--        <collection property="blogs" ofType="Blog">-->
+<!--            <id column="id" property="id"></id>-->
+<!--            <result column="title" property="title"></result>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+    <select id="getCategory" resultType="xyz.zzz989.my.blog.domain.entity.Category">
+        SELECT a.id,a.blog_category_name AS blogCategoryName,b.id AS "blog.id",b.title AS "blog.title",b.categoriy_id AS "blog.categoryId"
+        FROM blog_category AS a
+        LEFT JOIN blog AS b ON a.id = b.categoriy_id
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM blog_category
+    </select>
+    
+</mapper>
