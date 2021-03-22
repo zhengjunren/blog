@@ -44,7 +44,7 @@
         <mybatis-plus.version>2.3</mybatis-plus.version>
         <velocity-engine-core.version>2.1</velocity-engine-core.version>
         <freemarker.version>2.3.28</freemarker.version>
-        <xstream.version>1.4.10</xstream.version>
+        <xstream.version>1.4.16</xstream.version>
     </properties>
 
     <dependencyManagement>
